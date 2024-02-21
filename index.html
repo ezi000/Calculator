@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <script src="index.js" defer></script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10dvh;
+      }
+      .obudowa {
+        background-color: rgb(44, 42, 42);
+        height: 60dvh;
+        width: 50dvh;
+        padding: 1.5dvh;
+      }
+
+      .ekran {
+        border: 5px solid black;
+        height: 10dvh;
+        background-color: rgb(168, 168, 162);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 5dvh;
+        padding-right: 2dvh;
+      }
+
+      .przyciski {
+        margin-top: 1dvh;
+        display: flex;
+        height: 80%;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+      }
+
+      button {
+        border-radius: 0.7rem;
+        height: 9dvh;
+        width: 12dvh;
+        font-weight: bold;
+        font-size: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      button:active {
+        background-color: azure;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="obudowa">
+      <div class="ekran" style="font-size: 50px; font-weight: bold">0</div>
+      <div class="przyciski">
+        <button id="AC" style="background-color: #f2e8cf">AC</button>
+        <button id="plusMinus" style="background-color: #f2e8cf">+/-</button>
+        <button id="procent" style="background-color: #f2e8cf">%</button>
+        <button id="div" style="background-color: #bc4749">/</button>
+        <button id="7" style="background-color: #6a994e">7</button>
+        <button id="8" style="background-color: #6a994e">8</button>
+        <button id="9" style="background-color: #6a994e">9</button>
+        <button id="multi" style="background-color: #bc4749">*</button>
+        <button id="4" style="background-color: #6a994e">4</button>
+        <button id="5" style="background-color: #6a994e">5</button>
+        <button id="6" style="background-color: #6a994e">6</button>
+        <button id="subs" style="background-color: #bc4749">-</button>
+        <button id="1" style="background-color: #6a994e">1</button>
+        <button id="2" style="background-color: #6a994e">2</button>
+        <button id="3" style="background-color: #6a994e">3</button>
+        <button id="add" style="background-color: #bc4749">+</button>
+        <button id="0" style="width: 24dvh; background-color: #6a994e">
+          0
+        </button>
+        <button id="dot" style="background-color: #6a994e">.</button>
+        <button id="result" style="background-color: #bc4749">=</button>
+      </div>
+    </div>
+  </body>
+</html>

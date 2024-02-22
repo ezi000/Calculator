@@ -1,6 +1,7 @@
 let aString = "";
 let bString = "";
 let ekran = document.querySelector("#number");
+let math = document.querySelector("#action");
 let buttons = document.querySelectorAll(
   "button[id='0'], button[id='1'], button[id='2'], button[id='3'], button[id='4'], button[id='5'], button[id='6'], button[id='7'], button[id='8'], button[id='9']"
 );
@@ -18,11 +19,77 @@ buttons.forEach((button) => {
   });
 });
 
+//wszystko poniżej dzieje się po naciśnięciu przycisku
 actions.forEach((button) => {
   button.addEventListener("click", (id) => {
-    if (id.target.id == "AC") {
+    if (id.target.id === "AC") {
+      math.innerHTML = "";
       aString = "";
       ekran.innerText = "0";
+    }
+
+    if (id.target.id === "plusMinus") {
+      if (aString !== "") {
+        const number = parseFloat(aString);
+        const toggledNumber = -number;
+        aString = toggledNumber.toString();
+        ekran.innerText = aString;
+      }
+    }
+
+    if (id.target.id === "procent") {
+      if (aString !== "") {
+        const number = parseFloat(aString);
+        const toggledNumber = number / 100;
+        aString = toggledNumber.toString();
+        ekran.innerText = aString;
+      }
+    }
+
+    if (id.target.id === "div") {
+      if (aString !== "") {
+        aString += "/";
+        ekran.innerText = "0";
+        math.innerHTML = "/";
+        return aString;
+      }
+    }
+
+    if (id.target.id === "multi") {
+      if (aString !== "") {
+        math.innerHTML = "*";
+        aString = "";
+        ekran.innerText = "0";
+      }
+    }
+
+    if (id.target.id === "subs") {
+      if (aString !== "") {
+        math.innerHTML = "-";
+        aString = "";
+        ekran.innerText = "0";
+      }
+    }
+
+    if (id.target.id === "add") {
+      if (aString !== "") {
+        math.innerHTML = "+";
+        aString = "";
+        ekran.innerText = "0";
+      }
+    }
+
+    if (id.target.id === "dot") {
+      if (aString !== "") {
+        aString += ".";
+        ekran.innerText = aString;
+      }
+    }
+
+    if (id.target.id === "result") {
+      if (aString !== "") {
+        ekran.innerText = aString;
+      }
     }
   });
 });

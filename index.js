@@ -45,15 +45,23 @@ actions.forEach((button) => {
         ekran.innerText = aString;
       }
     }
+    let dzial = {};
 
+    // niech zrobi obiekt z 2 parametrami aString i działanie;
+    //wpisujesz liczbe, klikasz np. '/' i tworzy obiekt z aString i działaniem i resetuje ekran
+    //a jak klikniesz '=' to zapisze to co na ekranie do bString
+    // i wykona działanie bazując na wartości parametru 'działanie'
     if (id.target.id === "div") {
       if (aString !== "") {
-        aString += "/";
-        ekran.innerText = "0";
         math.innerHTML = "/";
-        return aString;
+        dzial = {
+          aString,
+          dzialanie: "/",
+        };
+        return dzial;
       }
     }
+    console.log(dzial);
 
     if (id.target.id === "multi") {
       if (aString !== "") {

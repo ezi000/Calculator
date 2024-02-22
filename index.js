@@ -1,5 +1,4 @@
 let aString = "";
-let bString = "";
 let ekran = document.querySelector("#number");
 let math = document.querySelector("#action");
 let buttons = document.querySelectorAll(
@@ -10,6 +9,8 @@ let actions = document.querySelectorAll(
   "button[id='AC'], button[id='plusMinus'], button[id='procent'], button[id='div'], button[id='multi'], button[id='subs'], button[id='add'], button[id='dot'], button[id='result']"
 );
 
+let dzial = {};
+
 buttons.forEach((button) => {
   button.addEventListener("click", (id) => {
     if (aString.length < 10) {
@@ -19,7 +20,6 @@ buttons.forEach((button) => {
   });
 });
 
-//wszystko poniżej dzieje się po naciśnięciu przycisku
 actions.forEach((button) => {
   button.addEventListener("click", (id) => {
     if (id.target.id === "AC") {
@@ -42,48 +42,46 @@ actions.forEach((button) => {
         const number = parseFloat(aString);
         const toggledNumber = number / 100;
         aString = toggledNumber.toString();
-        ekran.innerText = aString;
+        if (aString.length <= 10) {
+          ekran.innerText = aString;
+        } else {
+          let digitsAfterDecimal =
+            10 - Math.floor(Math.log10(Math.abs(aString))) - 1;
+          let roundedNumber = aString.toFixed(digitsAfterDecimal);
+          ekran.innerText = parseFloat(roundedNumber);
+        }
       }
     }
-    let dzial = {};
 
-    // niech zrobi obiekt z 2 parametrami aString i działanie;
-    //wpisujesz liczbe, klikasz np. '/' i tworzy obiekt z aString i działaniem i resetuje ekran
-    //a jak klikniesz '=' to zapisze to co na ekranie do bString
-    // i wykona działanie bazując na wartości parametru 'działanie'
     if (id.target.id === "div") {
       if (aString !== "") {
         math.innerHTML = "/";
-        dzial = {
-          aString,
-          dzialanie: "/",
-        };
-        return dzial;
+        obj(aString, "/");
+        aString = "";
       }
     }
-    console.log(dzial);
 
     if (id.target.id === "multi") {
       if (aString !== "") {
         math.innerHTML = "*";
+        obj(aString, "*");
         aString = "";
-        ekran.innerText = "0";
       }
     }
 
     if (id.target.id === "subs") {
       if (aString !== "") {
         math.innerHTML = "-";
+        obj(aString, "-");
         aString = "";
-        ekran.innerText = "0";
       }
     }
 
     if (id.target.id === "add") {
       if (aString !== "") {
         math.innerHTML = "+";
+        obj(aString, "+");
         aString = "";
-        ekran.innerText = "0";
       }
     }
 
@@ -96,24 +94,43 @@ actions.forEach((button) => {
 
     if (id.target.id === "result") {
       if (aString !== "") {
-        ekran.innerText = aString;
+        math.innerHTML = "=";
+        wynik();
+        aString = ekran.innerText;
       }
     }
   });
 });
 
-function add(a, b) {
-  return a + b;
+function obj(a, b) {
+  (dzial.liczba = a), (dzial.dzialanie = b);
 }
 
-function subtract(a, b) {
-  return a - b;
-}
-
-function divide(a, b) {
-  return a / b;
-}
-
-function multiply(a, b) {
-  return a * b;
+function wynik() {
+  let liczbaa = Number(dzial.liczba);
+  let liczba = Number(aString);
+  let wynik;
+  switch (dzial.dzialanie) {
+    case "+":
+      wynik = liczbaa + liczba;
+      break;
+    case "-":
+      wynik = liczbaa - liczba;
+      break;
+    case "*":
+      wynik = liczbaa * liczba;
+      break;
+    case "/":
+      wynik = liczbaa / liczba;
+      break;
+  }
+  if (wynik.length <= 10) {
+    ekran.innerText = wynik;
+    return wynik;
+  } else {
+    let digitsAfterDecimal = 10 - Math.floor(Math.log10(Math.abs(wynik))) - 1;
+    let roundedNumber = wynik.toFixed(digitsAfterDecimal);
+    ekran.innerText = parseFloat(roundedNumber);
+    return parseFloat(roundedNumber);
+  }
 }

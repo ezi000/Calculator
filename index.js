@@ -14,7 +14,11 @@ let dzial = {};
 buttons.forEach((button) => {
   button.addEventListener("click", (id) => {
     if (aString.length < 10) {
-      aString += id.target.innerText;
+      if (ekran.innerText !== "ERROR" && ekran.innerText != "NaN") {
+        aString += id.target.innerText;
+      } else {
+        aString = "";
+      }
     }
     ekran.innerText = aString;
   });
@@ -121,7 +125,9 @@ function wynik() {
       wynik = liczbaa * liczba;
       break;
     case "/":
-      wynik = liczbaa / liczba;
+      if (liczba === 0) {
+        wynik = "ERROR";
+      } else wynik = liczbaa / liczba;
       break;
   }
   if (wynik.length <= 10) {

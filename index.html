@@ -25,10 +25,11 @@
         height: 10dvh;
         background-color: rgb(168, 168, 162);
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         font-size: 5dvh;
         padding-right: 2dvh;
+        padding-left: 1dvh;
       }
 
       .przyciski {
@@ -59,7 +60,19 @@
   </head>
   <body>
     <div class="obudowa">
-      <div class="ekran" style="font-size: 50px; font-weight: bold">0</div>
+      <div class="ekran" style="font-size: 50px; font-weight: bold">
+        <div
+          id="action"
+          style="
+            color: rgba(0, 0, 0, 0.251);
+            font-size: 30px;
+            font-weight: bold;
+          "
+        >
+          %
+        </div>
+        <div id="number">0</div>
+      </div>
       <div class="przyciski">
         <button id="AC" style="background-color: #f2e8cf">AC</button>
         <button id="plusMinus" style="background-color: #f2e8cf">+/-</button>
